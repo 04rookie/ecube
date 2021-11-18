@@ -1,0 +1,31 @@
+{
+  "name": "ecube",
+  "version": "1.0.0",
+  "description": "A website server API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build && mv build ../app",
+    "local-test": "concurrently \"npm run start\"  \"npm run heroku-postbuild\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/04rookie/ecube.git"
+  },
+  "author": "Atharva Jadhav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/04rookie/ecube/issues"
+  },
+  "homepage": "https://github.com/04rookie/ecube#readme",
+  "dependencies": {
+    "concurrently": "^6.4.0",
+    "create-react-app": "^4.0.3",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "nodemon": "^2.0.15"
+  }
+}
