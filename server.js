@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 app.use(express.json());
+require("dotenv").config();
 app.use(express.static(path.join(__dirname, "/app")))
 const port = 5000;
 app.listen(process.env.PORT || port, () => {
