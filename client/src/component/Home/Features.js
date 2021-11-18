@@ -39,7 +39,7 @@ export default function Features() {
 function Feature(props) {
   return (
     <>
-      <Grid item xs={6} sx={{ padding: "3vw" }}>
+      <Grid item xs={12} sm={6} sx={{ padding: "3vw" }}>
         {props.record.inverse ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
             <img
@@ -55,7 +55,7 @@ function Feature(props) {
           </>
         )}
       </Grid>
-      <Grid item xs={6} sx={{ padding: "3vw" }}>
+      <Grid item xs={12} sm={6} sx={{ padding: "3vw" }}>
         {props.record.inverse ? (
           <>
             <h2>{props.record.title}</h2>
