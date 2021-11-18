@@ -8,7 +8,7 @@ export default function Header() {
         sx={{ padding: "3vw", height: "17.3vw", backgroundColor: "#BBE1FA" }}
       >
         <Grid container>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={6} sm={6}>
           <p
             style={{
               fontSize: "3vw",
@@ -20,7 +20,7 @@ export default function Header() {
             E-cube
           </p>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={6} sm={6}>
           <img
             style={{
               position: "relative",
