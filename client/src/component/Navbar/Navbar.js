@@ -44,10 +44,12 @@ function Navbar() {
     },
   });
 
+  const linkTabStyle={color:"#BBE1FA", fontWeight:"700"}
+
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: "100%", backgroundColor: "#1B262C", color:"#BBE1FA", paddingLeft:"3vw" }}>
+      <Box sx={{ width: "100%", backgroundColor: "#1B262C", color:"#BBE1FA",}}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -55,9 +57,9 @@ function Navbar() {
           textColor="secondary"
           indicatorColor="secondary"
         >
-          <LinkTab style={{color:"#BBE1FA", fontWeight:"700"}} label="Home" onClick={pushHomePage} />
-          <LinkTab style={{color:"#BBE1FA", fontWeight:"700"}} label="About Us" onClick={pushAboutUsPage} />
-          <LinkTab style={{color:"#BBE1FA", fontWeight:"700"}} label="Services" onClick={pushServicesPage} />
+          <LinkTab style={linkTabStyle} label="Home" onClick={pushHomePage} />
+          <LinkTab style={linkTabStyle} label="About Us" onClick={pushAboutUsPage} />
+          <LinkTab style={linkTabStyle} label="Services" onClick={pushServicesPage} />
         </Tabs>
       </Box>
       </ThemeProvider>
