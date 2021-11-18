@@ -4,18 +4,21 @@ import { Grid, Container } from "@mui/material";
 export default function Features() {
   const data = [
     {
+      key: 1,
       title: "Lorem Ipsum",
       body: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       img: proto,
       inverse: false,
     },
     {
+      key: 2,
       title: "Lorem Ipsum",
       body: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       img: proto,
       inverse: true,
     },
     {
+        key:3,
       title: "Lorem Ipsum",
       body: "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       img: proto,
@@ -26,7 +29,7 @@ export default function Features() {
     <div>
       <Grid container>
         {data.map((record) => {
-          return <Feature record={record} />;
+          return <Feature key={record.key} record={record} />;
         })}
       </Grid>
     </div>
