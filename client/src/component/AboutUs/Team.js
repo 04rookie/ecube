@@ -24,7 +24,7 @@ function Member(props) {
         <Avatar alt={props.member.name} src={props.member.img} sx={{width:props.viewport?"3vw":"15vw", height:props.viewport?"3vw":"15vw"}} />
       </Grid>
       <Grid item xs={9} sm={9}>
-        <h1 style={{ ...TitleStyle}}>{props.member.name}</h1>
+        <h1 style={{ ...TitleStyle, fontSize:props.viewport?"1vw":"4vw"}}>{props.member.name}</h1>
       </Grid>
       <Grid item xs={12} sm={12}>
         <p style={{ ...BodyStyle }}>{props.member.experience}</p>
