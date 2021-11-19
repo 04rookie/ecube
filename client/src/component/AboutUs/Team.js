@@ -10,7 +10,7 @@ export default function Team() {
     <h1 style={{...TitleStyle}}>Our team members</h1>
       <Grid container>
         {TeamData.map((member) => {
-          return <Member member={member} />;
+          return <Member member={member} viewport={viewport} />;
         })}
       </Grid>
     </div>
@@ -19,9 +19,9 @@ export default function Team() {
 
 function Member(props) {
   return (
-    <div style={{padding:"1.5vw 0vw"}}>
+    <div style={{padding:props.viewport?"1.5vw 0vw":"7vw 0vw"}}>
       <Grid item xs={3} sm={3}>
-        <Avatar alt={props.member.name} src={props.member.img} sx={{width:"3vw", height:"3vw"}} />
+        <Avatar alt={props.member.name} src={props.member.img} sx={{width:props.viewport?"3vw":"15vw", height:props.viewport?"3vw":"15vw"}} />
       </Grid>
       <Grid item xs={9} sm={9}>
         <h1 style={{ ...TitleStyle}}>{props.member.name}</h1>

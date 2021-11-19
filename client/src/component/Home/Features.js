@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Container } from "@mui/material";
 import FeatureData from "./FeatureData";
-import { TitleStyle, BodyStyle } from "../GlobalStyle/GlobalStyle";
+import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 export default function Features() {
   const data = FeatureData;
   return (
@@ -16,6 +16,7 @@ export default function Features() {
 }
 
 function Feature(props) {
+  const viewport = Viewport()
   const gridItemFeatureStyle = {
     padding: "5vw 6vw 5vw",
     display: "flex",
@@ -81,7 +82,7 @@ function Feature(props) {
           >
             <img
               src={props.record.img}
-              style={{ width: "15vw" }}
+              style={{ width: viewport?"15vw":"40vw"}}
               alt="man"
             ></img>
           </Grid>
