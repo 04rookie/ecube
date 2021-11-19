@@ -12,7 +12,7 @@ export default function Introduction() {
         }}
       >
         About us
-      </h1>{" "}
+      </h1>
       <p
         style={{
           ...BodyStyle,
