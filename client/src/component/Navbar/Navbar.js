@@ -56,7 +56,7 @@ function Navbar() {
           aria-label="nav tabs"
           textColor="secondary"
           indicatorColor="secondary"
-        >
+        > 
           <LinkTab style={linkTabStyle} label="Home" onClick={pushHomePage} />
           <LinkTab style={linkTabStyle} label="About Us" onClick={pushAboutUsPage} />
           <LinkTab style={linkTabStyle} label="Services" onClick={pushServicesPage} />
