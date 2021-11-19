@@ -57,6 +57,7 @@ export default function Testimonials() {
         </Paper>
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          animateTransitions={true}
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
