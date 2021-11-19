@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { paragraphOne, paragraphTwo } from "./IntroData";
-import { TitleStyle, BodyStyle } from "../GlobalStyle/GlobalStyle";
+import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 export default function Introduction() {
+  const viewport = Viewport();
   return (
     <>
-      <h1 style={{...TitleStyle, padding:"5vw 25vw 0vw"}}>About us</h1> <p style={{...BodyStyle, padding:"0vw 25vw 5vw"}}>{paragraphOne + " " + paragraphTwo}</p>
+      <h1
+        style={{
+          ...TitleStyle,
+          padding: viewport ? "5vw 25vw 0vw" : "5vw 5vw 0vw",
+        }}
+      >
+        About us
+      </h1>{" "}
+      <p
+        style={{
+          ...BodyStyle,
+          padding: viewport ? "0vw 25vw 5vw" : "0vw 5vw 5vw",
+        }}
+      >
+        {paragraphOne + " " + paragraphTwo}
+      </p>
     </>
   );
 }
