@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { paragraphOne, paragraphTwo } from "./IntroData";
 import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 export default function Introduction() {
-  const viewport = Viewport();
+  const viewport = Viewport(800);
   return (
     <>
       <h1

@@ -49,7 +49,7 @@ function Navbar() {
 
   const linkTabStyle = { color: "#BBE1FA", fontWeight: "700" };
 
-  const viewport = Viewport();
+  const viewport = Viewport(800);
   return (
     <>
       <ThemeProvider theme={theme}>

@@ -3,7 +3,7 @@ import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 import PolicyData from "./PolicyData";
 import { Grid } from "@mui/material";
 export default function Policy() {
-  const viewport = Viewport();
+  const viewport = Viewport(800);
   return (
     <>
       <h1

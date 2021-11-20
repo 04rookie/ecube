@@ -16,7 +16,7 @@ export default function Features() {
 }
 
 function Feature(props) {
-  const viewport = Viewport()
+  const viewport = Viewport(800)
   const gridItemFeatureStyle = {
     padding: "5vw 6vw 5vw",
     display: "flex",

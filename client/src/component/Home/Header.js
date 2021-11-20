@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 import man from "./header-man.png";
 import { Viewport, TitleStyle, BodyStyle } from "../GlobalStyle/GlobalStyle";
 export default function Header() {
-  const viewport = Viewport();
+  const viewport = Viewport(800);
   return (
     <div name="home-header-main">
       <Box
@@ -28,7 +28,7 @@ export default function Header() {
             </h1>
           </Grid>
           <Grid item xs={6} sm={6}>
-            <img
+            {/* <img
               style={{
                 position: "relative",
                 right: viewport ? "14vw" : "14vw",
@@ -39,7 +39,7 @@ export default function Header() {
               src={man}
               alt="pic"
               align="right"
-            ></img>
+            ></img> */}
           </Grid>
         </Grid>
       </Box>

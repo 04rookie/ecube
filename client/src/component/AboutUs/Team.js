@@ -4,7 +4,7 @@ import TeamData from "./TeamData";
 import Avatar from "@mui/material/Avatar";
 import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 export default function Team() {
-    const viewport = Viewport();
+    const viewport = Viewport(800);
   return (
     <div style={{padding:viewport?"0vw 25vw 0vw":"0vw 5vw 0vw"}}>
     <h1 style={{...TitleStyle}}>Our team members</h1>

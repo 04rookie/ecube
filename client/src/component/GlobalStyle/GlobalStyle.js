@@ -7,11 +7,11 @@ const BodyStyle = {
   color: "#0F4C75",
 };
 
-export function Viewport(){
+export function Viewport(threshold){
     const {height, width} = useWindowDimensions();
-    const [padding, setPadding] = useState(width>800?true:false);
+    const [padding, setPadding] = useState(width>threshold?true:false);
     useEffect(()=>{
-        width>800?setPadding(true):setPadding(false);
+        width>threshold?setPadding(true):setPadding(false);
       }, [width])
     return padding;
 }
