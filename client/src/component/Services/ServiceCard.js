@@ -26,7 +26,7 @@ export default function ServiceCard(props) {
         handleClose={handleClose}
         cardData={props.cardData}
       />
-      <Card sx={{ maxWidth: viewport ? "30vw" : "55vw" }}>
+      <Card sx={{ maxWidth: viewport ? "30vw" : "70vw" }}>
         <CardMedia
           component="img"
           height="140"
