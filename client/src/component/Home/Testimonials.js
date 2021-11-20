@@ -6,35 +6,13 @@ import Typography from "@mui/material/Typography";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import proto from "./imageproto.png"
+import TestimonialsData from "./TestimonialsData";
 export default function Testimonials() {
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-  const images = [
-    {
-      label: "1",
-      imgPath:
-        proto,
-    },
-    {
-      label: "2",
-      imgPath:
-        proto,
-    },
-    {
-      label: "3",
-      imgPath:
-        proto,
-    },
-    {
-      label: "4",
-      imgPath:
-        proto,
-    },
-  ];
-
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const maxSteps = TestimonialsData.length;
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
@@ -53,7 +31,6 @@ export default function Testimonials() {
             bgcolor: "#0F4C75",
           }}
         >
-          <Typography>{images[activeStep].label}</Typography>
         </Paper>
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -62,17 +39,16 @@ export default function Testimonials() {
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
-          {images.map((step, index) => (
-            <div key={step.label}>
+          {TestimonialsData.map((step, index) => (
+            <div style={{display:"flex", justifyContent:"center", alignItems:"center"}} key={step.label}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <Box
                   component="img"
                   sx={{
-                    height: 255,
+                    height: "5vw",
+                    width: "5vw",
                     display: "block",
-                    maxWidth: 400,
                     overflow: "hidden",
-                    width: "100%",
                   }}
                   src={step.imgPath}
                   alt={step.label}

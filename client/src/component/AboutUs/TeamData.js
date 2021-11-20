@@ -67,10 +67,9 @@ const TeamData = [
     img: katkar,
     name: "Bhagyashree N Katkar",
     experience:
-      "Bhagyashree is in-charge of material testing activities of e cube. She manages the laboratory activities which requires a sound knowledge of standards and procedures and coordinates correspondence with clients",
+      "She is with e cube for the past 8 years. Bhagyashree is in-charge of material testing activities of e cube. She manages the laboratory activities which requires a sound knowledge of standards and procedures and coordinates correspondence with clients",
     education: "She is a Bachelor of Engineering in Civil discipline.",
-    speciality:
-      "She has successfully completed with merit NRMCA Concrete Technologist India (CIT) certification course. She is with e cube for the past 2 years.",
+    speciality:""
   },
 ];
 export default TeamData;

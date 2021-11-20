@@ -19,11 +19,10 @@ function LinkTab(props) {
   );
 }
 
-function Navbar() {
+function Navbar(props) {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const [top, setTop] = React.useState(true);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -38,6 +37,24 @@ function Navbar() {
 
   function pushServicesPage() {
     navigate("/services");
+  }
+
+  function pushLoginPage() {
+    navigate("/login");
+  }
+
+  function pushLogoutPage() {
+    //delete sessionstorage
+    console.log(props.login)
+    if(props.login){
+      props.setLogin(false);
+      localStorage.removeItem("userId")
+      navigate("/home");
+    }
+    else{
+      pushLoginPage()
+    }
+    
   }
 
   const theme = createTheme({
@@ -86,6 +103,24 @@ function Navbar() {
               label="Services"
               onClick={pushServicesPage}
             />
+            {/* {props.login ? (
+              <LinkTab
+                style={linkTabStyle}
+                label="Login"
+                onClick={pushLoginPage}
+              />
+            ) : (
+              <LinkTab
+                style={linkTabStyle}
+                label="Logout"
+                onClick={pushLogoutPage}
+              />
+            )} */}
+            <LinkTab
+                style={linkTabStyle}
+                label={props.login?"Logout":"Login"}
+                onClick={pushLogoutPage}
+              />
           </Tabs>
         </Box>
       </ThemeProvider>
