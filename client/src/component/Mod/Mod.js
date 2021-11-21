@@ -1,70 +1,161 @@
 import React, { useState } from "react";
-import { Box, Paper, TextField } from "@mui/material";
-import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
-import { maxHeight } from "@mui/system";
+import { Grid, Paper, TextField, Box, Button } from "@mui/material";
+import axios from "axios";
+import AuthHeader from "../Auth/Auth";
 export default function Mod() {
-  const viewport = Viewport(1000);
-  const [userId, setUserId] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState("");
+  const [userEntry, setUserEntry] = useState({
+    userId: "",
+    userPassword: "",
+    userName: "",
+    companyName: "",
+    companyAddress: "",
+    companyGstNumber: "",
+    companyAuthorisedPerson: "",
+    companyMobileNumber: "",
+  });
   function handleChange(e) {
-    console.log(e.target.id);
-    console.log(e.target.value);
-    console.log(userId);
-    e.target.id === "userId"
-      ? setUserId(e.target.value)
-      : setUserPassword(e.target.value);
+    setUserEntry((prev) => {
+      const temp = { ...prev };
+      return { ...prev, [e.target.name]: e.target.value };
+    });
   }
 
+  function handleSubmit(e) {
+    e.target.name === "userEntry" ? postUserServer() : postUserServer();
+  }
+
+  async function postUserServer() {
+    const userId = localStorage.getItem("userId");
+    const response = await axios.post(
+      "/api/user/" + userId,
+      { access:userId, data:userEntry},
+      { headers: AuthHeader()}
+    );
+    if(!response.data){
+      setError(true)
+      setHelperText("User id is not unique, try a different ID")
+    }
+    else{
+      setError(false)
+      setHelperText("")
+      return response
+    }
+  }
   return (
     <div>
-      <Paper
-        sx={{
-          height: "97vh",
-          width: "100%",
-          bgcolor: "#3282B8",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        square
-      >
-        <Box
-          sx={{
-            // width: viewport ? "20vw" : "70vw",
-            // height: viewport ? "20vw" : "70vw",
-            // maxWidth: viewport ? "20vw" : "50vw",
-            // maxHeight: viewport ? "20vw" : "50vw",
-            // minWidth: viewport ? "20vw" : "40vw",
-            // minHeight: viewport ? "20vw" : "40vw",
-            padding:viewport?"6vw":"12vw",
-            bgcolor: "#BBE1FA",
-            borderRadius: "1vw",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <h1 style={{ ...TitleStyle }}>Login</h1>
-          <TextField
-            id="userId"
-            label="User ID"
-            variant="standard"
-            sx={{ marginBottom: "1vw" }}
-            onChange={handleChange}
-            value={userId}
-          ></TextField>
-          <TextField
-            id="password"
-            label="Password"
-            type="password"
-            variant="standard"
-            onChange={handleChange}
-            value={userPassword}
-          ></TextField>
-        </Box>
-      </Paper>
+      <Grid container>
+        <Grid item sm={6} xs={12}>
+          <Paper
+            sx={{ width: "100%", height: "100vh", bgcolor: "#BBE1FA" }}
+            square
+          >
+            <Box
+              sx={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+            <TextField
+                error={error}
+                helperText={helperText}
+                name="userId"
+                label="User ID"
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.userId}
+                autoComplete="off"
+              ></TextField>
+              <TextField
+                error={error}
+                helperText={helperText}
+                name="userPassword"
+                label="User Password"
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.userPassword}
+                autoComplete="off"
+              ></TextField>
+              <TextField
+                error={error}
+                helperText={helperText}
+                name="userName"
+                label="User name"
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.userName}
+                autoComplete="off"
+              ></TextField>
+              <TextField
+                error={error}
+                helperText={helperText}
+                name="companyName"
+                label="Company name"
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.companyName}
+                autoComplete="off"
+              ></TextField>
+              <TextField
+                error={error}
+                helperText={helperText}
+                name="companyAddress"
+                label="Company address"
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.companyAddress}
+                multiline
+                autoComplete="off"
+              ></TextField>
+              <TextField
+                error={error}
+                helperText={helperText}
+                name="companyGstNumber"
+                label="GST no."
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.companyGstNumber}
+                autoComplete="off"
+                multiline
+              ></TextField>
+              <TextField
+                error={error}
+                helperText={helperText}
+                name="companyMobileNumber"
+                label="Company mobile no."
+                variant="standard"
+                sx={{ marginBottom: "1vw" }}
+                onChange={handleChange}
+                value={userEntry.companyMobileNumber}
+                autoComplete="off"
+              ></TextField>
+              <Button
+                variant="contained"
+                name="userEntry"
+                onClick={handleSubmit}
+              >
+                Add user
+              </Button>
+            </Box>
+          </Paper>
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Paper
+            sx={{ width: "100%", height: "100vh", bgcolor: "#FDFDFD" }}
+            square
+          ></Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }

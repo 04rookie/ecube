@@ -45,16 +45,21 @@ function Navbar(props) {
 
   function pushLogoutPage() {
     //delete sessionstorage
-    console.log(props.login)
-    if(props.login){
+    console.log(props.login);
+    if (props.login) {
       props.setLogin(false);
-      localStorage.removeItem("userId")
+      localStorage.removeItem("userToken");
+      localStorage.removeItem("userId");
       navigate("/home");
+    } else {
+      pushLoginPage();
     }
-    else{
-      pushLoginPage()
-    }
-    
+  }
+
+  function pushDashboardPage() {
+    props.login
+      ? navigate("/dashboard/" + localStorage.getItem("userId"))
+      : pushLoginPage();
   }
 
   const theme = createTheme({
@@ -117,10 +122,15 @@ function Navbar(props) {
               />
             )} */}
             <LinkTab
-                style={linkTabStyle}
-                label={props.login?"Logout":"Login"}
-                onClick={pushLogoutPage}
-              />
+              style={linkTabStyle}
+              label="Dashboard"
+              onClick={pushDashboardPage}
+            />
+            <LinkTab
+              style={{ ...linkTabStyle, marginLeft: "auto" }}
+              label={props.login ? "Logout" : "Login"}
+              onClick={pushLogoutPage}
+            />
           </Tabs>
         </Box>
       </ThemeProvider>

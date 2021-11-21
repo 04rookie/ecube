@@ -8,7 +8,7 @@ import katkar from "./katkar.jpg";
 const TeamData = [
   {
     img: suhas,
-    name: "Suhas S Dhuri",
+    name: "Suhas S. Dhuri",
     experience:
       "Suhas Dhuri is one of the promoters and the partner of e cube consultants. In past 5 years he has established himself & e cube as prime consultant in the concrete industry. He has worked with ACC Ltd for more than 25 years in various divisions like R&D, product development & ready mix concrete.",
     education:
@@ -18,7 +18,7 @@ const TeamData = [
   },
   {
     img: surve,
-    name: "Pratap D Surve",
+    name: "Pratap D. Surve",
     experience:
       "Pratap is one of the promoters and the partner of e cube Consultants. He has total experience of 30 years which includes more than 25 years in the ACC Ltd.",
     education: "He is a chemistry graduate.",
@@ -46,7 +46,7 @@ const TeamData = [
   },
   {
     img: deolekar,
-    name: "Chandrakant S Deolekar",
+    name: "Chandrakant S. Deolekar",
     experience:
       "Chandrakant is an associate of e cube consultants. He ha a working experience of 45 years including 29 years in ACC Ltd.",
     education:
@@ -56,7 +56,7 @@ const TeamData = [
   },
   {
     img: ramdas,
-    name: "Ramdas P Surve",
+    name: "Ramdas P. Surve",
     experience:
       "Ramdas is in-charge of e cube’s Non Destructive Testing activities. He is with e cube for the past 10 years since inception.",
     education: "He is a qualified Radio Telecommunication Engineer.",
@@ -65,7 +65,7 @@ const TeamData = [
   },
   {
     img: katkar,
-    name: "Bhagyashree N Katkar",
+    name: "Bhagyashree N. Katkar",
     experience:
       "She is with e cube for the past 8 years. Bhagyashree is in-charge of material testing activities of e cube. She manages the laboratory activities which requires a sound knowledge of standards and procedures and coordinates correspondence with clients",
     education: "She is a Bachelor of Engineering in Civil discipline.",

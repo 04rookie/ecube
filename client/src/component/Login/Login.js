@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Paper, TextField, Button } from "@mui/material";
 import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 import { maxHeight } from "@mui/system";
+import { useNavigate } from "react-router";
 const axios = require("axios");
 export default function Login(props) {
   const viewport = Viewport(1000);
@@ -9,6 +10,7 @@ export default function Login(props) {
   const [userPassword, setUserPassword] = useState("");
   const [error, setError] = useState(false)
   const [helperText, setHelperText] = useState("")
+  const navigate = useNavigate();
   function handleChange(e) {
     e.target.id === "userId"
       ? setUserId(e.target.value)
@@ -28,8 +30,9 @@ export default function Login(props) {
     );
     if(response.data.success){
       props.setLogin(true)
-      console.log(response.data)
-      localStorage.setItem("userId", JSON.stringify(response.data.token))
+      localStorage.setItem("userToken", JSON.stringify(response.data.token))
+      localStorage.setItem("userId", response.data.userId)
+      response.data.isMod?navigate("/mod/dashboard"):navigate("/dashboard/" + response.data.userId);
     }
     else{
       setError(true)
@@ -77,6 +80,7 @@ export default function Login(props) {
             sx={{ marginBottom: "1vw" }}
             onChange={handleChange}
             value={userId}
+            autoComplete="off"
           ></TextField>
           <TextField
             error={error}

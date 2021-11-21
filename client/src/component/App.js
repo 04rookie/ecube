@@ -7,17 +7,16 @@ import Navbar from "./Navbar/Navbar";
 import { Services } from "./Services/Services";
 import Login from "./Login/Login";
 import Mod from "./Mod/Mod";
+import Dashboard from "./Dashboard/Dashboard";
 function App() {
   const [login, setLogin] = React.useState(false);
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("userId"));
-    console.log(token)
+    const token = JSON.parse(localStorage.getItem("userToken"));
     if (token) {
-      setLogin(true)
-    }
-    else{
-      setLogin(false)
+      setLogin(true);
+    } else {
+      setLogin(false);
     }
   }, []);
 
@@ -30,6 +29,8 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/login" element={<Login setLogin={setLogin} />} />
+        <Route path="/dashboard/:userId" element={<Dashboard />}></Route>
+        <Route path="/mod/dashboard" element={<Mod />}></Route>
       </Routes>
       <Footer />
     </>

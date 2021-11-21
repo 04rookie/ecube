@@ -2,21 +2,18 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import proto from "./imageproto.png"
 import TestimonialsData from "./TestimonialsData";
+import {Viewport} from "../GlobalStyle/GlobalStyle"
 export default function Testimonials() {
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = TestimonialsData.length;
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
-
+  const viewport = Viewport(800);
   return (
     <><div style={{padding:"5vw 3vw 5vw", display:"flex", justifyContent:"center", backgroundColor:"#0F4C75"}}>
       <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
@@ -26,7 +23,7 @@ export default function Testimonials() {
           sx={{
             display: "flex",
             alignItems: "center",
-            height: 50,
+            height: "5vw",
             pl: 2,
             bgcolor: "#0F4C75",
           }}
@@ -45,8 +42,8 @@ export default function Testimonials() {
                 <Box
                   component="img"
                   sx={{
-                    height: "5vw",
-                    width: "5vw",
+                    height: viewport?"5vw":"30vw",
+                    width: viewport?"5vw":"30vw",
                     display: "block",
                     overflow: "hidden",
                   }}
