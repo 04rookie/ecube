@@ -41,7 +41,7 @@ app.post("/api/login", (req, res) => {
     { userId: req.body.userId, userPassword: req.body.userPassword },
     (err, foundUser) => {
       if (err) {
-        console.log(error);
+        console.log(err);
       } else if (foundUser) {
         const token = jwt.sign(
           { userId: foundUser.userId },
