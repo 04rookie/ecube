@@ -5,7 +5,7 @@ import Auth from "../Auth/Auth";
 import { BodyStyle, TitleStyle, Viewport } from "../GlobalStyle/GlobalStyle";
 import Reports from "./Reports";
 export default function Dashboard() {
-  const viewport = Viewport(800)
+  const viewport = Viewport(800);
   const [userData, setUserData] = useState({
     userId: "",
     userName: "",
@@ -15,6 +15,8 @@ export default function Dashboard() {
     companyAuthorisedPerson: "",
     companyMobileNumber: "",
   });
+
+  const [userReportData, setUserReportData] = useState([]);
   useEffect(() => {
     getUser().then((response) => {
       setUserData((prev) => {
@@ -22,6 +24,11 @@ export default function Dashboard() {
         return temp;
       });
     });
+    getReport().then((response) =>
+      setUserReportData((prev) => {
+        return [...response.data];
+      })
+    );
   }, []);
 
   async function getUser() {
@@ -31,6 +38,15 @@ export default function Dashboard() {
     );
     return response;
   }
+
+  async function getReport() {
+    const response = await axios.get(
+      "/api/report/" + localStorage.getItem("userId"),
+      { headers: Auth() }
+    );
+    return response;
+  }
+
   return (
     <div>
       <Grid container>
@@ -48,7 +64,10 @@ export default function Dashboard() {
             square
           >
             <div>
-            <i style={{fontSize:viewport?"5vw":"10vw"}} class="fas fa-user-circle"></i>
+              <i
+                style={{ fontSize: viewport ? "5vw" : "10vw" }}
+                class="fas fa-user-circle"
+              ></i>
               <h3 style={{ ...TitleStyle }}>Name: {userData.userName}</h3>
               <h3 style={{ ...TitleStyle }}>
                 Company Name: {userData.companyName}
@@ -72,7 +91,9 @@ export default function Dashboard() {
           <Paper
             sx={{ width: "100%", height: "100vh", bgcolor: "#FDFDFD" }}
             square
-          ><Reports /></Paper>
+          >
+            <Reports userReportData={userReportData} />
+          </Paper>
         </Grid>
       </Grid>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Paper, TextField, Button } from "@mui/material";
 import { TitleStyle, BodyStyle, Viewport } from "../GlobalStyle/GlobalStyle";
-import { maxHeight } from "@mui/system";
+import { fontSize, maxHeight } from "@mui/system";
 import { useNavigate } from "react-router";
 const axios = require("axios");
 export default function Login(props) {
@@ -70,14 +70,14 @@ export default function Login(props) {
             flexDirection: "column",
           }}
         >
-          <h1 style={{ ...TitleStyle }}>Login</h1>
+          <h1 style={{ ...TitleStyle, fontSize:viewport?"1.5vw":"4vw"}}>Login</h1>
           <TextField
             error={error}
             helperText={helperText}
             id="userId"
             label="User ID"
             variant="standard"
-            sx={{ marginBottom: "1vw" }}
+            sx={{ marginBottom: "1vw", maxWidth:viewport?"20vw":"26vw" }}
             onChange={handleChange}
             value={userId}
             autoComplete="off"
@@ -91,7 +91,7 @@ export default function Login(props) {
             variant="standard"
             onChange={handleChange}
             value={userPassword}
-            sx={{ marginBottom: "1vw" }}
+            sx={{ marginBottom: "1vw", maxWidth:viewport?"20vw":"26vw" }}
           ></TextField>
           <Button variant="contained" onClick={handleSubmit}>
             Submit

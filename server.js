@@ -36,6 +36,14 @@ const modSchema = new mongoose.Schema({
 });
 const Mod = mongoose.model("Mod", modSchema);
 
+const reportSchema = new mongoose.Schema({
+  userId: String,
+  docUrl: String,
+  docType: Number,
+  reportId: String,
+});
+const Report = mongoose.model("Report", reportSchema);
+
 app.post("/api/login", (req, res) => {
   User.findOne(
     { userId: req.body.userId, userPassword: req.body.userPassword },
@@ -100,7 +108,7 @@ app.post("/api/user/:userId", auth, (req, res) => {
         const newUserDoc = new User({
           ...data,
         });
-        newUserDoc.save().then(()=>res.send(true));
+        newUserDoc.save().then(() => res.send(true));
       }
     });
   } catch (err) {
@@ -110,21 +118,42 @@ app.post("/api/user/:userId", auth, (req, res) => {
   }
 });
 
-app.get("/api/user/:userId", authGET, (req, res)=>{
-  User.findOne({userId: req.params.userId}, (err, foundUser)=>{
-    if(err){
-      console.log(err)
-      console.log("error in app.get user/userId")
-    }
-    else if(foundUser){
+app.get("/api/user/:userId", authGET, (req, res) => {
+  User.findOne({ userId: req.params.userId }, (err, foundUser) => {
+    if (err) {
+      console.log(err);
+      console.log("error in app.get user/userId");
+    } else if (foundUser) {
       delete foundUser.userPassword;
-      res.send(foundUser)
+      res.send(foundUser);
+    } else {
+      res.send(false);
     }
-    else {
-      res.send(false)
+  });
+});
+
+app.post("/api/report/:userId", auth, (req, res) => {
+  console.log(req.body.data)
+  const newReport = new Report({
+    ...req.body.data,
+  });
+  newReport.save();
+  res.send(true);
+});
+
+app.get("/api/report/:userId", authGET, (req, res) => {
+  const userId = req.params.userId;
+  Report.find({ userId: userId }, (err, foundReport) => {
+    if (err) {
+      console.log(err);
+      res.send(false);
+    } else if (foundReport) {
+      res.send(foundReport);
+    } else {
+      res.send(false);
     }
-  })
-})
+  });
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/app", "/index.html"), (err) => {

@@ -20,6 +20,7 @@ function LinkTab(props) {
 }
 
 function Navbar(props) {
+  const viewport = Viewport(800);
   const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const [top, setTop] = React.useState(true);
@@ -69,9 +70,12 @@ function Navbar(props) {
     },
   });
 
-  const linkTabStyle = { color: "#BBE1FA", fontWeight: "700" };
+  const linkTabStyle = {
+    color: "#BBE1FA",
+    fontWeight: "700",
+    fontSize: viewport ? ".7vw" : "2.2vw",
+  };
 
-  const viewport = Viewport(800);
   return (
     <>
       <ThemeProvider theme={theme}>
