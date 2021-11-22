@@ -96,6 +96,7 @@ function Navbar(props) {
             textColor="secondary"
             indicatorColor="secondary"
             allowScrollButtonsMobile
+            variant="scrollable"
           >
             {/* <img
               alt="logo"
