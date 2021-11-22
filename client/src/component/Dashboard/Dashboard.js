@@ -3,6 +3,7 @@ import { Grid, Paper } from "@mui/material";
 import axios from "axios";
 import Auth from "../Auth/Auth";
 import { BodyStyle, TitleStyle, Viewport } from "../GlobalStyle/GlobalStyle";
+import Reports from "./Reports";
 export default function Dashboard() {
   const viewport = Viewport(800)
   const [userData, setUserData] = useState({
@@ -71,7 +72,7 @@ export default function Dashboard() {
           <Paper
             sx={{ width: "100%", height: "100vh", bgcolor: "#FDFDFD" }}
             square
-          ></Paper>
+          ><Reports /></Paper>
         </Grid>
       </Grid>
     </div>
