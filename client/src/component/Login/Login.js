@@ -13,7 +13,6 @@ export default function Login(props) {
   const navigate = useNavigate();
   function handleChange(e) {
     const pattern = /[^a-zA-Z0-9]/;
-    //console.log(pattern.test(e.target.value))
     if (e.target.id === "userId") {
       if (!pattern.test(e.target.value)) {
         setUserId(e.target.value);
@@ -23,8 +22,8 @@ export default function Login(props) {
         setError(true);
         setHelperText("Alphanumeric only");
       }
-    } else {
-      if (pattern.test(e.target.value)) {
+    } else if(e.target.id==="password"){
+      if (!pattern.test(e.target.value)) {
         setUserPassword(e.target.value);
         setError(false);
         setHelperText("");
