@@ -95,6 +95,7 @@ function Navbar(props) {
             aria-label="nav tabs"
             textColor="secondary"
             indicatorColor="secondary"
+            allowScrollButtonsMobile
           >
             {/* <img
               alt="logo"
