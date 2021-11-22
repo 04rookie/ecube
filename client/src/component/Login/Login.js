@@ -8,13 +8,31 @@ export default function Login(props) {
   const viewport = Viewport(1000);
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [error, setError] = useState(false)
-  const [helperText, setHelperText] = useState("")
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState("");
   const navigate = useNavigate();
   function handleChange(e) {
-    e.target.id === "userId"
-      ? setUserId(e.target.value)
-      : setUserPassword(e.target.value);
+    const pattern = /[^a-zA-Z0-9]/;
+    //console.log(pattern.test(e.target.value))
+    if (e.target.id === "userId") {
+      if (!pattern.test(e.target.value)) {
+        setUserId(e.target.value);
+        setError(false);
+        setHelperText("");
+      } else {
+        setError(true);
+        setHelperText("Alphanumeric only");
+      }
+    } else {
+      if (pattern.test(e.target.value)) {
+        setUserPassword(e.target.value);
+        setError(false);
+        setHelperText("");
+      } else {
+        setError(true);
+        setHelperText("Alphanumeric only");
+      }
+    }
   }
 
   function handleSubmit() {
@@ -28,15 +46,16 @@ export default function Login(props) {
       { userId: userId, userPassword: userPassword },
       { headers: { "Content-Type": "application/json" } }
     );
-    if(response.data.success){
-      props.setLogin(true)
-      localStorage.setItem("userToken", JSON.stringify(response.data.token))
-      localStorage.setItem("userId", response.data.userId)
-      response.data.isMod?navigate("/mod/dashboard"):navigate("/dashboard/" + response.data.userId);
-    }
-    else{
-      setError(true)
-      setHelperText("Incorrect id or password")
+    if (response.data.success) {
+      props.setLogin(true);
+      localStorage.setItem("userToken", JSON.stringify(response.data.token));
+      localStorage.setItem("userId", response.data.userId);
+      response.data.isMod
+        ? navigate("/mod/dashboard")
+        : navigate("/dashboard/" + response.data.userId);
+    } else {
+      setError(true);
+      setHelperText("Incorrect id or password");
     }
   }
 
@@ -55,12 +74,6 @@ export default function Login(props) {
       >
         <Box
           sx={{
-            // width: viewport ? "20vw" : "70vw",
-            // height: viewport ? "20vw" : "70vw",
-            // maxWidth: viewport ? "20vw" : "50vw",
-            // maxHeight: viewport ? "20vw" : "50vw",
-            // minWidth: viewport ? "20vw" : "40vw",
-            // minHeight: viewport ? "20vw" : "40vw",
             padding: viewport ? "6vw" : "12vw",
             bgcolor: "#BBE1FA",
             borderRadius: "1vw",
@@ -70,14 +83,16 @@ export default function Login(props) {
             flexDirection: "column",
           }}
         >
-          <h1 style={{ ...TitleStyle, fontSize:viewport?"1.5vw":"4vw"}}>Login</h1>
+          <h1 style={{ ...TitleStyle, fontSize: viewport ? "1.5vw" : "4vw" }}>
+            Login
+          </h1>
           <TextField
             error={error}
             helperText={helperText}
             id="userId"
             label="User ID"
             variant="standard"
-            sx={{ marginBottom: "1vw", maxWidth:viewport?"20vw":"26vw" }}
+            sx={{ marginBottom: "1vw", maxWidth: viewport ? "20vw" : "26vw" }}
             onChange={handleChange}
             value={userId}
             autoComplete="off"
@@ -91,7 +106,7 @@ export default function Login(props) {
             variant="standard"
             onChange={handleChange}
             value={userPassword}
-            sx={{ marginBottom: "1vw", maxWidth:viewport?"20vw":"26vw" }}
+            sx={{ marginBottom: "1vw", maxWidth: viewport ? "20vw" : "26vw" }}
           ></TextField>
           <Button variant="contained" onClick={handleSubmit}>
             Submit
