@@ -1,7 +1,7 @@
 # e-cube website.
 
 A small website made in **MERN** stack and deployed on Heroku. The website uses ReactJS + MaterialUI for front-end, and the back-end API is developed in Express, NodeJS and MongoDB Atlas.
->The website can be currently view at- https://ecube-india.herokuapp.com/
+>The website can be currently viewed at- https://ecube-india.herokuapp.com/
 
 
 # Files
